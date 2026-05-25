@@ -247,6 +247,68 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
   body{padding-top:0;}
   .wz-section{display:block!important;}
 }
+
+/* ─── STEP 2 BADGES ─────────────────────────────────── */
+.badges-area{
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  padding:10px 14px;min-height:44px;
+  background:var(--surface);border:0.5px solid var(--border);border-radius:10px;
+  margin-bottom:1rem;
+}
+.badges-empty{font-size:12px;color:var(--ink-faint);}
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#fff;border:1px solid var(--border-mid);border-radius:999px;
+  padding:3px 8px 3px 12px;font-size:12px;font-weight:500;color:var(--ink-soft);
+}
+.badge-x{
+  background:none;border:none;cursor:pointer;padding:0 2px;
+  color:var(--ink-faint);font-size:14px;line-height:1;transition:color 0.1s;
+}
+.badge-x:hover{color:var(--critical);}
+
+/* ─── STEP 4 SAVE AREA ───────────────────────────────── */
+.save-area{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:14px 16px;background:#fff;
+  border:0.5px solid var(--border);border-radius:12px;margin-top:2px;
+}
+.proj-name-row{display:flex;gap:8px;align-items:center;width:100%;}
+.proj-name-input{
+  flex:1;padding:8px 12px;border:1px solid var(--border-mid);border-radius:7px;
+  font-family:var(--font-b);font-size:13px;color:var(--ink);outline:none;
+  transition:border-color 0.15s;
+}
+.proj-name-input:focus{border-color:var(--blue);}
+.proj-name-input::placeholder{color:var(--ink-faint);}
+
+/* ─── HISTORY SECTION ────────────────────────────────── */
+.history-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+.history-title{font-family:var(--font-d);font-size:18px;font-weight:500;color:var(--night);margin-bottom:4px;font-variation-settings:'opsz' 9;}
+.history-sub{font-size:13px;color:var(--ink-muted);margin-bottom:1.25rem;}
+.history-empty{font-size:13px;color:var(--ink-faint);padding:1.5rem 0;}
+.hist-item{background:#fff;border:0.5px solid var(--border);border-radius:10px;margin-bottom:4px;overflow:hidden;}
+.hist-head{display:flex;align-items:center;gap:12px;padding:12px 16px;}
+.hist-info{flex:1;min-width:0;}
+.hist-proj{font-size:13px;font-weight:600;color:var(--ink);}
+.hist-meta{font-size:11px;color:var(--ink-faint);margin-top:1px;}
+.hist-range{font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap;flex-shrink:0;}
+.hist-btns{display:flex;gap:6px;flex-shrink:0;}
+.btn-sm{
+  padding:5px 12px;border-radius:6px;font-family:var(--font-b);font-size:11.5px;
+  font-weight:500;cursor:pointer;border:0.5px solid var(--border-mid);
+  background:transparent;color:var(--ink-soft);transition:all 0.15s;
+}
+.btn-sm:hover{border-color:var(--blue);color:var(--blue);}
+.btn-sm.danger{border-color:rgba(192,57,43,0.2);color:var(--critical);}
+.btn-sm.danger:hover{background:var(--critical-soft);}
+.hist-detail{display:none;padding:12px 16px;border-top:0.5px solid var(--border);background:var(--frost);}
+.hist-detail.open{display:block;}
+.hd-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;}
+.hd-label{color:var(--ink-faint);}
+.hd-val{font-weight:600;color:var(--ink-soft);}
+.hd-svcs{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
+.hd-svc{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--ink-muted);border:0.5px solid var(--border);}
 </style>
 </head>
 <body>
@@ -315,6 +377,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
       </div>
       <span id="svc-count" style="font-size:12px;color:var(--ink-faint);white-space:nowrap;">0 seleccionados</span>
     </div>
+    <div id="badges-area" class="badges-area"><span class="badges-empty">Ningún servicio seleccionado aún</span></div>
     <div id="svc-list"></div>
   </div>
 
@@ -374,6 +437,13 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
       <span class="wz-nav-info" id="step-label">Paso 1 de 4</span>
       <button class="btn btn-primary" id="btn-next" onclick="nextStep()">Siguiente →</button>
     </div>
+  </div>
+
+  <!-- HISTORY SECTION -->
+  <div class="history-section" id="history-section">
+    <h2 class="history-title">Historial de cotizaciones</h2>
+    <p class="history-sub">Cotizaciones guardadas en este dispositivo.</p>
+    <div id="history-list"></div>
   </div>
 
 </main>
@@ -454,6 +524,7 @@ function init() {
   renderClientGrid();
   renderServiceList();
   renderComplexityGrid();
+  renderHistory();
   goToStep(1);
 }
 
@@ -538,6 +609,7 @@ function toggleService(id) {
   });
   const n = state.selectedServices.size;
   document.getElementById('svc-count').textContent = n + ' seleccionado' + (n !== 1 ? 's' : '');
+  renderBadges();
 }
 
 /* ═══════════════════════════════════════════════
@@ -721,7 +793,9 @@ function renderResult() {
           ${breakdownRows}
         </table>
       </div>
-    </div>`;
+    </div>
+    <div id="save-area" class="save-area"></div>`;
+  renderSaveArea();
 }
 
 /* ═══════════════════════════════════════════════
@@ -804,6 +878,7 @@ function resetWizard() {
   document.getElementById('error-msg').classList.remove('show');
   renderClientGrid();
   renderServiceList();
+  renderBadges();
   renderComplexityGrid();
   // reset modality toggle
   document.querySelectorAll('.toggle-opt').forEach(b => {
@@ -811,6 +886,154 @@ function resetWizard() {
   });
   document.getElementById('hh-card').style.display = 'none';
   goToStep(1);
+}
+
+/* ═══════════════════════════════════════════════
+   BADGES (STEP 2)
+═══════════════════════════════════════════════ */
+function getItemById(id) {
+  for (const cat of Object.values(C.services)) {
+    for (const item of cat.items) {
+      if (item.id === id) return item;
+    }
+  }
+  return null;
+}
+
+function renderBadges() {
+  const area = document.getElementById('badges-area');
+  if (!area) return;
+  if (state.selectedServices.size === 0) {
+    area.innerHTML = '<span class="badges-empty">Ningún servicio seleccionado aún</span>';
+    return;
+  }
+  area.innerHTML = '';
+  state.selectedServices.forEach(id => {
+    const item = getItemById(id);
+    if (!item) return;
+    const badge = document.createElement('span');
+    badge.className = 'badge';
+    badge.innerHTML = `${item.label}<button class="badge-x" onclick="toggleService('${id}')" title="Quitar">×</button>`;
+    area.appendChild(badge);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   SAVE / DISCARD (STEP 4)
+═══════════════════════════════════════════════ */
+function renderSaveArea(saved) {
+  const area = document.getElementById('save-area');
+  if (!area) return;
+  if (saved) {
+    area.innerHTML = `<div class="note ok" style="width:100%;margin:0;"><span class="note-icon">◆</span><div class="note-text"><strong>Cotización guardada.</strong> Puedes verla en el historial de abajo.</div></div>`;
+    return;
+  }
+  area.innerHTML = `
+    <span style="font-size:13px;color:var(--ink-soft);flex:1;">¿Guardar esta cotización en el historial?</span>
+    <button class="btn btn-primary" onclick="showSaveForm()">Guardar cotización</button>
+    <button class="btn btn-ghost" onclick="discardSave()">Descartar</button>`;
+}
+
+function showSaveForm() {
+  const area = document.getElementById('save-area');
+  if (!area) return;
+  area.innerHTML = `
+    <div class="proj-name-row">
+      <input class="proj-name-input" id="proj-name-input" type="text" placeholder="Nombre del proyecto…" maxlength="80">
+      <button class="btn btn-primary" onclick="confirmSave()">Guardar</button>
+      <button class="btn btn-ghost" onclick="renderSaveArea()">Cancelar</button>
+    </div>`;
+  document.getElementById('proj-name-input').focus();
+}
+
+function confirmSave() {
+  const input = document.getElementById('proj-name-input');
+  const name = input ? input.value.trim() : '';
+  if (!name) { if (input) { input.style.borderColor = 'var(--critical)'; input.focus(); } return; }
+
+  const r = calculate();
+  const clientName = (CLIENT_META[state.clientType] || { name: state.clientType }).name;
+  const complexName = (COMPLEXITY_META[state.complexity] || { name: state.complexity }).name;
+  const today = new Date().toLocaleDateString('es-CL', { day:'numeric', month:'long', year:'numeric' });
+
+  const entry = {
+    id: Date.now(),
+    name,
+    date: today,
+    client: clientName,
+    complexity: complexName,
+    modality: state.modality === 'hh' ? 'Por horas (HH)' : 'Por unidad',
+    services: getSelectedItems().map(i => i.label),
+    operationalCost: r.operationalCost,
+    rangeMin: r.rangeMin,
+    rangeMax: r.rangeMax,
+  };
+
+  const history = getHistory();
+  history.unshift(entry);
+  saveHistory(history);
+  renderHistory();
+  renderSaveArea(true);
+}
+
+function discardSave() {
+  const area = document.getElementById('save-area');
+  if (area) area.innerHTML = `<span style="font-size:12px;color:var(--ink-faint);">Cotización descartada.</span>`;
+}
+
+/* ═══════════════════════════════════════════════
+   HISTORY
+═══════════════════════════════════════════════ */
+const HISTORY_KEY = 'fcohubto_estimate_history';
+
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; }
+}
+
+function saveHistory(list) {
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  if (!list) return;
+  const history = getHistory();
+  if (history.length === 0) {
+    list.innerHTML = '<p class="history-empty">Sin cotizaciones guardadas aún.</p>';
+    return;
+  }
+  list.innerHTML = history.map((entry, idx) => `
+    <div class="hist-item">
+      <div class="hist-head">
+        <div class="hist-info">
+          <div class="hist-proj">${entry.name}</div>
+          <div class="hist-meta">${entry.date} · ${entry.client} · ${entry.complexity}</div>
+        </div>
+        <div class="hist-range">${fmt(entry.rangeMin)} — ${fmt(entry.rangeMax)}</div>
+        <div class="hist-btns">
+          <button class="btn-sm" onclick="toggleDetail(${idx})">Ver detalle</button>
+          <button class="btn-sm danger" onclick="deleteEstimate(${idx})">Eliminar</button>
+        </div>
+      </div>
+      <div class="hist-detail" id="hist-detail-${idx}">
+        <div class="hd-row"><span class="hd-label">Costo operacional</span><span class="hd-val">${fmt(entry.operationalCost)}</span></div>
+        <div class="hd-row"><span class="hd-label">Rango recomendado</span><span class="hd-val">${fmt(entry.rangeMin)} — ${fmt(entry.rangeMax)}</span></div>
+        <div class="hd-row"><span class="hd-label">Modalidad</span><span class="hd-val">${entry.modality}</span></div>
+        <div class="hd-svcs">${entry.services.map(s => `<span class="hd-svc">${s}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleDetail(idx) {
+  const el = document.getElementById('hist-detail-' + idx);
+  if (el) el.classList.toggle('open');
+}
+
+function deleteEstimate(idx) {
+  const history = getHistory();
+  history.splice(idx, 1);
+  saveHistory(history);
+  renderHistory();
 }
 
 /* ═══════════════════════════════════════════════
