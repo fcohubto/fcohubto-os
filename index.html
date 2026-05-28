@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>fcohubto · os</title>
+<title>OLIVA OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9,600;0,9,700;1,9,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -156,7 +156,9 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
   display:flex;gap:2px;padding-top:1.5rem;padding-bottom:0;
   margin-bottom:1.75rem;border-bottom:1px solid var(--border);
   overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
 }
+.subnav::-webkit-scrollbar{display:none;}
 .subnav-btn{
   padding:9px 18px;background:transparent;border:none;border-bottom:2px solid transparent;
   font-family:var(--font-b);font-size:12.5px;font-weight:500;color:var(--ink-muted);
@@ -169,7 +171,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 
 /* layer header */
 .layer-header{
-  background:var(--night);border-radius:14px;padding:2rem 2.5rem;margin-bottom:2px;
+  background:var(--night);padding:2rem 2.5rem;margin-bottom:2px;
   position:relative;overflow:hidden;
 }
 .layer-header::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(62,198,212,0.05);top:-100px;right:-60px;pointer-events:none;}
@@ -335,7 +337,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 ═══════════════════════════════════════════════ -->
 <header class="site-header">
   <div class="header-left">
-    <div class="wm sm"><em>fco</em><span>hubto</span><b>·</b><span class="os">os</span></div>
+    <div class="wm sm"><em>Oliva</em><span>craft</span><b>·</b></div>
   </div>
   <div class="header-mid">
     <nav class="breadcrumb">
@@ -357,7 +359,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 
     <div style="text-align:center;margin-bottom:2.5rem;">
       <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7a8e;margin-bottom:10px;">Sistema Operativo Personal</p>
-      <h1 style="font-family:var(--font-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--night);letter-spacing:-0.02em;font-variation-settings:'opsz' 9;line-height:1.2;margin-bottom:0.4rem;">Francisco Orellana</h1>
+      <h1 style="font-family:var(--font-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--night);letter-spacing:-0.02em;font-variation-settings:'opsz' 9;line-height:1.2;margin-bottom:0.4rem;">OLIVA OS</h1>
       <p style="font-size:13px;color:var(--ink-muted);max-width:44ch;margin:0 auto;line-height:1.65;">Tres capas, un flujo. Del laboratorio personal al cliente.</p>
     </div>
 
@@ -382,7 +384,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
       <div class="layer-card lc-2" onclick="enterLayer('oliva')">
         <div class="lc-accent"></div>
         <div class="lc-num">Capa 02</div>
-        <div class="lc-name">OLIVA<br>OS</div>
+        <div class="lc-name">Oliva<br>Framework</div>
         <div class="lc-desc">Sistema de ejecución. Modelos R/C/P, workflows estratégicos y prompts nivel 9.</div>
         <div class="lc-footer">
           <div class="lc-status">
@@ -577,7 +579,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 
     <div class="layer-header" style="margin-bottom:0;">
       <div class="lh-num">Capa 02</div>
-      <div class="lh-name">OLIVA OS</div>
+      <div class="lh-name">Oliva Framework</div>
       <div class="lh-sub">Framework de ejecución guiado por IA. Tres modelos para pensar, crear y producir.</div>
     </div>
 
