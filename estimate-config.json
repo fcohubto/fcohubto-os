@@ -1,5 +1,5 @@
 {
-  "hourly_rate": 35000,
+  "hourly_rate": 55000,
   "currency": "CLP",
   "client_multipliers": {
     "pyme": 1.0,
@@ -19,35 +19,35 @@
     "web": {
       "label": "Diseño Web",
       "items": [
-        { "id": "landing",   "label": "Landing page",       "market_hours": 24, "my_hours": 8,  "base_price": 250000 },
-        { "id": "ecommerce", "label": "Ecommerce",          "market_hours": 60, "my_hours": 20, "base_price": 650000 },
-        { "id": "cms",       "label": "Sitio CMS",          "market_hours": 40, "my_hours": 14, "base_price": 420000 },
-        { "id": "ui",        "label": "UI / Diseño visual", "market_hours": 20, "my_hours": 6,  "base_price": 180000 },
-        { "id": "seo",       "label": "SEO base",           "market_hours": 10, "my_hours": 3,  "base_price": 90000  }
+        { "id": "landing",   "label": "Landing page",       "market_hours": 24, "my_hours": 8,  "base_price": 450000  },
+        { "id": "ecommerce", "label": "Ecommerce",          "market_hours": 60, "my_hours": 20, "base_price": 1100000 },
+        { "id": "cms",       "label": "Sitio CMS",          "market_hours": 40, "my_hours": 14, "base_price": 700000  },
+        { "id": "ui",        "label": "UI / Diseño visual", "market_hours": 20, "my_hours": 6,  "base_price": 350000  },
+        { "id": "seo",       "label": "SEO base",           "market_hours": 10, "my_hours": 3,  "base_price": 150000  }
       ]
     },
     "ux": {
       "label": "UX / Research",
       "items": [
-        { "id": "audit",     "label": "UX Audit",           "market_hours": 20, "my_hours": 6,  "base_price": 200000 },
-        { "id": "discovery", "label": "Product Discovery",  "market_hours": 30, "my_hours": 10, "base_price": 350000 },
-        { "id": "testing",   "label": "Usability Testing",  "market_hours": 16, "my_hours": 5,  "base_price": 160000 }
+        { "id": "audit",     "label": "UX Audit",           "market_hours": 20, "my_hours": 6,  "base_price": 400000 },
+        { "id": "discovery", "label": "Product Discovery",  "market_hours": 30, "my_hours": 10, "base_price": 650000 },
+        { "id": "testing",   "label": "Usability Testing",  "market_hours": 16, "my_hours": 5,  "base_price": 300000 }
       ]
     },
     "estrategia": {
       "label": "Estrategia y Consultoría",
       "items": [
-        { "id": "consultoria", "label": "Consultoría estratégica", "market_hours": 8,  "my_hours": 3, "base_price": 120000 },
-        { "id": "pm",          "label": "Project Management",      "market_hours": 20, "my_hours": 8, "base_price": 200000 },
-        { "id": "mentoria",    "label": "Mentoría",                "market_hours": 4,  "my_hours": 4, "base_price": 80000  }
+        { "id": "consultoria", "label": "Consultoría estratégica", "market_hours": 8,  "my_hours": 3, "base_price": 200000 },
+        { "id": "pm",          "label": "Project Management",      "market_hours": 20, "my_hours": 8, "base_price": 350000 },
+        { "id": "mentoria",    "label": "Mentoría",                "market_hours": 4,  "my_hours": 4, "base_price": 140000 }
       ]
     },
     "ia": {
       "label": "IA y Automatización",
       "items": [
-        { "id": "workflow",       "label": "IA Workflow",                    "market_hours": 30, "my_hours": 8, "base_price": 380000 },
-        { "id": "automatizacion", "label": "Automatización de procesos",     "market_hours": 24, "my_hours": 7, "base_price": 300000 },
-        { "id": "integracion",    "label": "Integración IA a producto",      "market_hours": 20, "my_hours": 6, "base_price": 250000 }
+        { "id": "workflow",       "label": "IA Workflow",               "market_hours": 30, "my_hours": 8, "base_price": 750000 },
+        { "id": "automatizacion", "label": "Automatización de procesos","market_hours": 24, "my_hours": 7, "base_price": 600000 },
+        { "id": "integracion",    "label": "Integración IA a producto", "market_hours": 20, "my_hours": 6, "base_price": 500000 }
       ]
     }
   }

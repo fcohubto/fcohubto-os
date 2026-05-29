@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estimate Engine — fcohubto · os</title>
+<title>Estimate Engine — OLIVA OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9,600;0,9,700;1,9,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -315,16 +315,16 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 
 <header class="site-header">
   <div class="header-left">
-    <a class="back-btn" href="index.html">← Francisco System</a>
+    <div class="wm sm"><em>Oliva</em><span>craft</span><b>·</b></div>
   </div>
   <div class="header-mid">
-    <div class="wm sm"><em>fco</em><span>hubto</span><b>·</b><span class="os">os</span></div>
-    <span class="h-sep">›</span>
-    <span class="h-layer">Francisco System</span>
+    <span class="h-layer">OLIVA OS</span>
     <span class="h-sep">›</span>
     <span class="h-title">Estimate Engine</span>
   </div>
-  <div class="header-right"></div>
+  <div class="header-right">
+    <a class="back-btn" href="index.html">← Home</a>
+  </div>
 </header>
 
 <main class="main-wrap">
@@ -984,7 +984,7 @@ function discardSave() {
 /* ═══════════════════════════════════════════════
    HISTORY
 ═══════════════════════════════════════════════ */
-const HISTORY_KEY = 'fcohubto_estimate_history';
+const HISTORY_KEY = 'oliva_estimate_history';
 
 function getHistory() {
   try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; }

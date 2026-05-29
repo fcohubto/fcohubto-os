@@ -106,52 +106,132 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 .copy-btn:hover{background:var(--surface);color:var(--blue);}
 .copy-btn.copied{background:var(--success-soft);color:var(--success);border-color:var(--success);}
 
-/* ─── HOME ──────────────────────────────────────────────── */
-#page-home{max-width:940px;margin:0 auto;padding:3rem 1.5rem 5rem;}
-.home-hero{text-align:center;margin-bottom:3rem;}
-.home-title{font-family:var(--font-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--night);letter-spacing:-0.02em;font-variation-settings:'opsz' 9;line-height:1.2;margin-top:1rem;margin-bottom:0.4rem;}
-.home-sub{font-size:13px;color:var(--ink-muted);max-width:42ch;margin:0 auto;line-height:1.65;}
-.layer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.layer-card{
-  background:var(--night);border-radius:14px;padding:2rem 1.75rem;
-  display:flex;flex-direction:column;gap:0;
-  position:relative;overflow:hidden;cursor:pointer;
-  transition:transform 0.2s,box-shadow 0.2s;
-  border:1px solid rgba(255,255,255,0.05);
+/* ─── HOME COCKPIT ──────────────────────────────────────── */
+#page-home{max-width:1060px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+
+.cockpit-focus{
+  background:var(--night);border-radius:12px;padding:1.25rem 2rem;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
 }
-.layer-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(13,43,74,0.18);}
-.layer-card::before{
-  content:'';position:absolute;width:220px;height:220px;border-radius:50%;
-  top:-80px;right:-60px;pointer-events:none;
+.cf-left{}
+.cf-eyebrow{font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;}
+.cf-date{font-family:var(--font-d);font-style:italic;font-weight:300;font-size:1.2rem;color:#fff;font-variation-settings:'opsz' 9;line-height:1.2;}
+.cf-stats{display:flex;gap:2rem;flex-shrink:0;}
+.cf-stat{text-align:center;}
+.cf-stat-val{font-size:1.6rem;font-weight:700;color:rgba(255,255,255,0.35);line-height:1;}
+.cf-stat-val.has-data{color:var(--cyan);}
+.cf-stat-label{font-size:10px;color:rgba(255,255,255,0.25);margin-top:3px;letter-spacing:0.03em;}
+.cf-system{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.35);}
+.cf-system-dot{width:7px;height:7px;border-radius:50%;background:var(--success);flex-shrink:0;}
+
+.cockpit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:start;}
+
+.capa-panel{background:#fff;border:0.5px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;}
+.cp-header{background:var(--night);padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;}
+.cp-num{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;}
+.cp-name{font-family:var(--font-d);font-size:16px;font-weight:600;color:#fff;font-variation-settings:'opsz' 9;line-height:1.2;}
+.cp-status-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,0.4);white-space:nowrap;}
+.cp-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:8px;}
+.cp-footer{padding:0.875rem 1.5rem;border-top:0.5px solid var(--border);}
+.cp-enter{
+  width:100%;padding:7px 0;border-radius:7px;
+  background:var(--surface);border:0.5px solid var(--border-mid);
+  font-family:var(--font-b);font-size:12px;font-weight:600;color:var(--blue);
+  cursor:pointer;transition:all 0.15s;
 }
-.lc-1::before{border:1px solid rgba(62,198,212,0.08);}
-.lc-2::before{border:1px solid rgba(10,126,194,0.15);}
-.lc-3::before{border:1px solid rgba(15,110,86,0.15);}
-.lc-accent{width:32px;height:3px;border-radius:2px;margin-bottom:1.25rem;}
-.lc-1 .lc-accent{background:var(--cyan);}
-.lc-2 .lc-accent{background:var(--blue);}
-.lc-3 .lc-accent{background:var(--success);}
-.lc-num{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;}
-.lc-name{font-family:var(--font-d);font-size:18px;font-weight:600;color:#fff;font-variation-settings:'opsz' 9;line-height:1.2;margin-bottom:8px;}
-.lc-desc{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;flex:1;margin-bottom:1.5rem;}
-.lc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
-.lc-status{display:flex;align-items:center;gap:6px;font-size:10.5px;color:rgba(255,255,255,0.65);}
+.cp-enter:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+/* counters — Capa 01 */
+.cp-counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.cp-counter{background:var(--surface);border-radius:8px;padding:10px 8px;text-align:center;border:0.5px solid var(--border);}
+.cp-counter-val{font-size:1.4rem;font-weight:700;color:var(--ink-faint);line-height:1;}
+.cp-counter-val.has-data{color:var(--blue);}
+.cp-counter-label{font-size:10px;color:var(--ink-faint);margin-top:2px;}
+
+/* bottom layer nav */
+.layer-bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:44px;background:rgba(242,248,253,0.96);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;gap:6px;
+  padding:0 1.5rem;z-index:150;
+}
+.layer-bottom-nav.show{display:flex;}
+.lbn-home{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 14px;border:0.5px solid var(--border-mid);border-radius:999px;
+  background:transparent;font-family:var(--font-b);font-size:11.5px;font-weight:600;
+  color:var(--ink-muted);cursor:pointer;transition:all 0.15s;white-space:nowrap;
+}
+.lbn-home:hover{border-color:var(--blue);color:var(--blue);}
+.lbn-sep{width:1px;height:16px;background:var(--border);margin:0 4px;flex-shrink:0;}
+.lbn-layer{
+  padding:5px 12px;border:0.5px solid transparent;border-radius:999px;
+  background:transparent;font-family:var(--font-b);font-size:11.5px;font-weight:500;
+  color:var(--ink-faint);cursor:pointer;transition:all 0.15s;white-space:nowrap;
+}
+.lbn-layer:hover{color:var(--blue);background:var(--surface);border-color:var(--border);}
+.lbn-layer.active{color:var(--blue);background:var(--surface);border-color:var(--border-mid);font-weight:600;}
+.lbn-spacer{flex:1;}
+.cp-quick-add{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:7px 12px;border-radius:7px;
+  border:0.5px dashed var(--border-mid);background:transparent;
+  font-family:var(--font-b);font-size:11.5px;color:var(--ink-muted);
+  cursor:pointer;transition:all 0.15s;width:100%;
+}
+.cp-quick-add:hover{border-color:var(--blue);color:var(--blue);background:var(--surface);}
+
+/* model buttons — Capa 02 */
+.cp-models{display:flex;flex-direction:column;gap:6px;}
+.cp-model-btn{
+  display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;
+  background:var(--surface);border:0.5px solid var(--border);
+  cursor:pointer;text-decoration:none;transition:all 0.15s;
+}
+.cp-model-btn:hover{border-color:var(--blue);background:rgba(10,126,194,0.05);}
+.cp-model-letter{
+  width:26px;height:26px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.cml-r{background:rgba(62,198,212,0.15);color:#1a7a88;}
+.cml-c{background:rgba(10,126,194,0.12);color:var(--blue);}
+.cml-p{background:rgba(13,43,74,0.1);color:var(--night);}
+.cp-model-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.2;}
+.cp-model-hint{font-size:10.5px;color:var(--ink-faint);}
+
+/* doc shortcuts — Capa 03 */
+.cp-docs{display:flex;flex-direction:column;gap:2px;}
+.cp-doc{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:7px 10px;border-radius:7px;
+  background:var(--surface);border:0.5px solid transparent;
+  text-decoration:none;transition:all 0.15s;
+}
+.cp-doc:hover{border-color:var(--border-mid);background:#fff;}
+.cp-doc-info{}
+.cp-doc-name{font-size:12px;font-weight:500;color:var(--ink);}
+.cp-doc-cat{font-size:10px;color:var(--ink-faint);}
+.cp-doc-arrow{font-size:11px;color:var(--ink-faint);flex-shrink:0;transition:color 0.15s;}
+.cp-doc:hover .cp-doc-arrow{color:var(--blue);}
+
+/* compat — keep status-dot used in layer pages */
 .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .sd-stable{background:var(--success);}
 .sd-building{background:var(--warn);}
-.lc-enter{
-  padding:7px 16px;border-radius:999px;font-family:var(--font-b);
-  font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;border:none;
+
+@media(max-width:860px){.cockpit-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){
+  .cockpit-grid{grid-template-columns:1fr;}
+  .cf-stats{display:none;}
+  .cockpit-focus{padding:1rem 1.25rem;}
 }
-.lc-1 .lc-enter{background:rgba(62,198,212,0.15);color:var(--cyan);}
-.lc-1 .lc-enter:hover{background:rgba(62,198,212,0.3);}
-.lc-2 .lc-enter{background:rgba(10,126,194,0.2);color:#7dd3f7;}
-.lc-2 .lc-enter:hover{background:rgba(10,126,194,0.35);}
-.lc-3 .lc-enter{background:rgba(15,110,86,0.2);color:#6ee7c4;}
-.lc-3 .lc-enter:hover{background:rgba(15,110,86,0.35);}
 
 /* ─── LAYER PAGES ───────────────────────────────────────── */
-.layer-wrap{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+.layer-wrap{max-width:960px;margin:0 auto;padding:0 1.5rem 7rem;}
 .subnav{
   display:flex;gap:2px;padding-top:1.5rem;padding-bottom:0;
   margin-bottom:1.75rem;border-bottom:1px solid var(--border);
@@ -352,61 +432,150 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 </header>
 
 <!-- ═══════════════════════════════════════════════
-     PAGE: HOME
+     PAGE: HOME — COCKPIT
 ═══════════════════════════════════════════════ -->
 <div id="page-home" class="page active">
-  <div style="max-width:940px;margin:0 auto;padding:2.5rem 1.5rem 5rem;">
+  <div style="max-width:1060px;margin:0 auto;padding:2rem 1.5rem 5rem;">
 
-    <div style="text-align:center;margin-bottom:2.5rem;">
-      <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7a8e;margin-bottom:10px;">Sistema Operativo Personal</p>
-      <h1 style="font-family:var(--font-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--night);letter-spacing:-0.02em;font-variation-settings:'opsz' 9;line-height:1.2;margin-bottom:0.4rem;">OLIVA OS</h1>
-      <p style="font-size:13px;color:var(--ink-muted);max-width:44ch;margin:0 auto;line-height:1.65;">Tres capas, un flujo. Del laboratorio personal al cliente.</p>
+    <!-- FOCUS BAR -->
+    <div class="cockpit-focus">
+      <div class="cf-left">
+        <div class="cf-eyebrow">OLIVA OS · Sistema Operativo</div>
+        <div class="cf-date" id="cockpit-date">—</div>
+      </div>
+      <div class="cf-stats">
+        <div class="cf-stat">
+          <div class="cf-stat-val" id="stat-ideas">—</div>
+          <div class="cf-stat-label">Ideas activas</div>
+        </div>
+        <div class="cf-stat">
+          <div class="cf-stat-val" id="stat-pipeline">—</div>
+          <div class="cf-stat-label">En pipeline</div>
+        </div>
+        <div class="cf-system">
+          <div class="cf-system-dot"></div>
+          Sistema estable
+        </div>
+      </div>
     </div>
 
-    <div class="layer-grid">
+    <!-- COCKPIT GRID -->
+    <div class="cockpit-grid">
 
-      <!-- CAPA 1 -->
-      <div class="layer-card lc-1" onclick="enterLayer('francisco')">
-        <div class="lc-accent"></div>
-        <div class="lc-num">Capa 01</div>
-        <div class="lc-name">Francisco<br>System</div>
-        <div class="lc-desc">Laboratorio personal. Ideas, experimentos, prompts propios y pipeline de ejecución.</div>
-        <div class="lc-footer">
-          <div class="lc-status">
+      <!-- CAPA 01 — Francisco System -->
+      <div class="capa-panel">
+        <div class="cp-header">
+          <div>
+            <div class="cp-num">Capa 01</div>
+            <div class="cp-name">OLIVA OS</div>
+          </div>
+          <div class="cp-status-badge">
             <div class="status-dot sd-building"></div>
             En construcción
           </div>
-          <button class="lc-enter" onclick="event.stopPropagation();enterLayer('francisco')">Entrar →</button>
+        </div>
+        <div class="cp-body">
+          <div class="cp-counters">
+            <div class="cp-counter">
+              <div class="cp-counter-val" id="val-ideas">—</div>
+              <div class="cp-counter-label">Ideas inbox</div>
+            </div>
+            <div class="cp-counter">
+              <div class="cp-counter-val" id="val-pipeline">—</div>
+              <div class="cp-counter-label">Pipeline activo</div>
+            </div>
+            <div class="cp-counter">
+              <div class="cp-counter-val" id="val-prompts">—</div>
+              <div class="cp-counter-label">Prompts</div>
+            </div>
+          </div>
+          <button class="cp-quick-add" onclick="enterLayer('francisco')">+ Nueva idea</button>
+        </div>
+        <div class="cp-footer">
+          <button class="cp-enter" onclick="enterLayer('francisco')">Entrar a OLIVA OS →</button>
         </div>
       </div>
 
-      <!-- CAPA 2 -->
-      <div class="layer-card lc-2" onclick="enterLayer('oliva')">
-        <div class="lc-accent"></div>
-        <div class="lc-num">Capa 02</div>
-        <div class="lc-name">Oliva<br>Framework</div>
-        <div class="lc-desc">Sistema de ejecución. Modelos R/C/P, workflows estratégicos y prompts nivel 9.</div>
-        <div class="lc-footer">
-          <div class="lc-status">
+      <!-- CAPA 02 — Oliva Framework -->
+      <div class="capa-panel">
+        <div class="cp-header">
+          <div>
+            <div class="cp-num">Capa 02</div>
+            <div class="cp-name">Oliva Framework</div>
+          </div>
+          <div class="cp-status-badge">
             <div class="status-dot sd-stable"></div>
             Estable
           </div>
-          <button class="lc-enter" onclick="event.stopPropagation();enterLayer('oliva')">Entrar →</button>
+        </div>
+        <div class="cp-body">
+          <div class="cp-models">
+            <a class="cp-model-btn" href="https://fcohubto.github.io/fw_oliva/" target="_blank">
+              <div class="cp-model-letter cml-r">R</div>
+              <div>
+                <div class="cp-model-name">Modelo Rápido</div>
+                <div class="cp-model-hint">6 prompts · urgencia real</div>
+              </div>
+            </a>
+            <a class="cp-model-btn" href="https://fcohubto.github.io/fw_oliva/" target="_blank">
+              <div class="cp-model-letter cml-c">C</div>
+              <div>
+                <div class="cp-model-name">Modelo Controlado</div>
+                <div class="cp-model-hint">11 prompts · default</div>
+              </div>
+            </a>
+            <a class="cp-model-btn" href="https://fcohubto.github.io/fw_oliva/" target="_blank">
+              <div class="cp-model-letter cml-p">P</div>
+              <div>
+                <div class="cp-model-name">Modelo Profundo</div>
+                <div class="cp-model-hint">16 prompts · alto impacto</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="cp-footer">
+          <button class="cp-enter" onclick="enterLayer('oliva')">Entrar a Oliva Framework →</button>
         </div>
       </div>
 
-      <!-- CAPA 3 -->
-      <div class="layer-card lc-3" onclick="enterLayer('olivacraft')">
-        <div class="lc-accent"></div>
-        <div class="lc-num">Capa 03</div>
-        <div class="lc-name">Oliva<br>craft</div>
-        <div class="lc-desc">Negocio y clientes. Documentos activos, propuestas, contratos y sistema operativo.</div>
-        <div class="lc-footer">
-          <div class="lc-status">
+      <!-- CAPA 03 — Olivacraft -->
+      <div class="capa-panel">
+        <div class="cp-header">
+          <div>
+            <div class="cp-num">Capa 03</div>
+            <div class="cp-name">Olivacraft</div>
+          </div>
+          <div class="cp-status-badge">
             <div class="status-dot sd-stable"></div>
             Estable
           </div>
-          <button class="lc-enter" onclick="event.stopPropagation();enterLayer('olivacraft')">Entrar →</button>
+        </div>
+        <div class="cp-body">
+          <div class="cp-docs">
+            <a class="cp-doc" href="https://fcohubto.github.io/olivacraftos/Productos/Fcohubto-os/olivacraft-sistema-operativo.html" target="_blank">
+              <div class="cp-doc-info"><div class="cp-doc-name">Sistema operativo</div><div class="cp-doc-cat">Operación</div></div>
+              <span class="cp-doc-arrow">→</span>
+            </a>
+            <a class="cp-doc" href="https://fcohubto.github.io/olivacraftos/Productos/Fcohubto-os/olivacraft-oliva-x-claudecode.html" target="_blank">
+              <div class="cp-doc-info"><div class="cp-doc-name">OLIVA × Claude Code</div><div class="cp-doc-cat">Sistema operacional</div></div>
+              <span class="cp-doc-arrow">→</span>
+            </a>
+            <a class="cp-doc" href="https://fcohubto.github.io/olivacraftos/Productos/Fcohubto-os/olivacraft-presupuesto.html" target="_blank">
+              <div class="cp-doc-info"><div class="cp-doc-name">Presupuesto</div><div class="cp-doc-cat">Comercial</div></div>
+              <span class="cp-doc-arrow">→</span>
+            </a>
+            <a class="cp-doc" href="https://fcohubto.github.io/olivacraftos/Productos/Fcohubto-os/olivacraft-contrato.html" target="_blank">
+              <div class="cp-doc-info"><div class="cp-doc-name">Contrato</div><div class="cp-doc-cat">Legal</div></div>
+              <span class="cp-doc-arrow">→</span>
+            </a>
+            <a class="cp-doc" href="https://fcohubto.github.io/olivacraftos/Productos/Fcohubto-os/olivacraft-roadmap.html" target="_blank">
+              <div class="cp-doc-info"><div class="cp-doc-name">Roadmap</div><div class="cp-doc-cat">Estrategia</div></div>
+              <span class="cp-doc-arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="cp-footer">
+          <button class="cp-enter" onclick="enterLayer('olivacraft')">Entrar a Olivacraft →</button>
         </div>
       </div>
 
@@ -422,7 +591,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
 
     <div class="layer-header" style="margin-bottom:0;">
       <div class="lh-num">Capa 01</div>
-      <div class="lh-name">Francisco System</div>
+      <div class="lh-name">OLIVA OS</div>
       <div class="lh-sub">Laboratorio personal. Ideas crudas, prompts propios y pipeline de trabajo en curso.</div>
     </div>
 
@@ -430,7 +599,7 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
       <button class="subnav-btn active" onclick="showSection('francisco','inbox')">Inbox de ideas</button>
       <button class="subnav-btn" onclick="showSection('francisco','prompts')">Prompt Registry</button>
       <button class="subnav-btn" onclick="showSection('francisco','pipeline')">Execution Pipeline</button>
-      <button class="subnav-btn" onclick="window.location.href='estimate-engine.html'" style="color:var(--cyan);">Estimate Engine ↗</button>
+      <button class="subnav-btn" onclick="window.open('estimate-engine.html','_blank')" style="color:var(--cyan);">Estimate Engine ↗</button>
     </nav>
 
     <!-- ── INBOX ── -->
@@ -780,6 +949,15 @@ body{background:var(--frost);color:var(--ink);font-family:var(--font-b);font-siz
   </div>
 </div>
 
+<!-- BOTTOM LAYER NAV -->
+<div class="layer-bottom-nav" id="layerBottomNav">
+  <button class="lbn-home" onclick="goHome()">← Home</button>
+  <div class="lbn-sep"></div>
+  <button class="lbn-layer" id="lbn-francisco" onclick="enterLayer('francisco')">Capa 01 · OLIVA OS</button>
+  <button class="lbn-layer" id="lbn-oliva"     onclick="enterLayer('oliva')">Capa 02 · Oliva Framework</button>
+  <button class="lbn-layer" id="lbn-olivacraft" onclick="enterLayer('olivacraft')">Capa 03 · Olivacraft</button>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════
    DATA — STORAGE KEYS (v2)
@@ -828,7 +1006,7 @@ const STATUS_META = {
   descartada:{ label:'Descartada',       cls:'b-descartada' },
 };
 const LAYER_META = {
-  francisco:  { label:'Francisco System', cls:'kc-francisco' },
+  francisco:  { label:'OLIVA OS', cls:'kc-francisco' },
   oliva:      { label:'OLIVA OS',         cls:'kc-oliva' },
   olivacraft: { label:'Olivacraft',       cls:'kc-olivacraft' },
 };
@@ -848,16 +1026,22 @@ function goHome() {
   document.getElementById('bc-sep').style.display = 'none';
   document.getElementById('bc-current').textContent = '';
   document.getElementById('back-btn').classList.remove('show');
+  document.getElementById('layerBottomNav').classList.remove('show');
+  document.querySelectorAll('.lbn-layer').forEach(b => b.classList.remove('active'));
   currentLayer = null;
 }
 
 function enterLayer(layer) {
-  const names = { francisco:'Francisco System', oliva:'OLIVA OS', olivacraft:'Olivacraft' };
+  const names = { francisco:'OLIVA OS', oliva:'Oliva Framework', olivacraft:'Olivacraft' };
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+layer).classList.add('active');
   document.getElementById('bc-sep').style.display = 'inline';
   document.getElementById('bc-current').textContent = names[layer];
   document.getElementById('back-btn').classList.add('show');
+  document.getElementById('layerBottomNav').classList.add('show');
+  document.querySelectorAll('.lbn-layer').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.getElementById('lbn-'+layer);
+  if (activeBtn) activeBtn.classList.add('active');
   currentLayer = layer;
   window.scrollTo({top:0,behavior:'smooth'});
   if (layer === 'francisco') { renderIdeas(); renderPrompts(); renderKanban(); }
@@ -1179,9 +1363,49 @@ document.addEventListener('keydown', e => {
 });
 
 /* ═══════════════════════════════════════════
+   COCKPIT
+═══════════════════════════════════════════ */
+function initCockpit() {
+  // Date
+  const now  = new Date();
+  const opts = { weekday:'long', day:'numeric', month:'long' };
+  document.getElementById('cockpit-date').textContent =
+    now.toLocaleDateString('es-CL', opts);
+
+  // Read data
+  const ideas    = loadIdeas();
+  const pipeline = loadPipeline();
+  const prompts  = loadPrompts();
+
+  const activeIdeas = Array.isArray(ideas)
+    ? ideas.filter(i => i.status !== 'descartada').length : 0;
+
+  const cols = pipeline.columns || {};
+  const activePipeline = ['inbox','thinking','structuring','building']
+    .reduce((sum, c) => sum + (cols[c] ? cols[c].length : 0), 0);
+
+  const promptCount = Array.isArray(prompts) ? prompts.length : 0;
+
+  // Focus bar
+  const siEl = document.getElementById('stat-ideas');
+  const spEl = document.getElementById('stat-pipeline');
+  if (siEl) { siEl.textContent = activeIdeas; if (activeIdeas > 0) siEl.classList.add('has-data'); }
+  if (spEl) { spEl.textContent = activePipeline; if (activePipeline > 0) spEl.classList.add('has-data'); }
+
+  // Panel counters
+  const viEl = document.getElementById('val-ideas');
+  const vpEl = document.getElementById('val-pipeline');
+  const vprEl = document.getElementById('val-prompts');
+  if (viEl)  { viEl.textContent = activeIdeas;    if (activeIdeas > 0)    viEl.classList.add('has-data'); }
+  if (vpEl)  { vpEl.textContent = activePipeline; if (activePipeline > 0) vpEl.classList.add('has-data'); }
+  if (vprEl) { vprEl.textContent = promptCount;   if (promptCount > 0)    vprEl.classList.add('has-data'); }
+}
+
+/* ═══════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════ */
 goHome();
+initCockpit();
 </script>
 </body>
 </html>
