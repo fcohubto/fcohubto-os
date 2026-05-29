@@ -49,6 +49,18 @@
         { "id": "automatizacion", "label": "Automatización de procesos","market_hours": 24, "my_hours": 7, "base_price": 600000 },
         { "id": "integracion",    "label": "Integración IA a producto", "market_hours": 20, "my_hours": 6, "base_price": 500000 }
       ]
+    },
+    "gestion": {
+      "label": "Gestión y Software",
+      "items": [
+        { "id": "gst_presupuestos", "label": "Módulo de presupuestos",      "market_hours": 12, "my_hours": 5, "base_price": 280000 },
+        { "id": "gst_obras",        "label": "Módulo estado de obras",      "market_hours": 12, "my_hours": 5, "base_price": 250000 },
+        { "id": "gst_ingresos",     "label": "Módulo ingresos y egresos",   "market_hours": 12, "my_hours": 5, "base_price": 250000 },
+        { "id": "gst_revisiones",   "label": "Módulo de revisiones",        "market_hours": 10, "my_hours": 4, "base_price": 200000 },
+        { "id": "gst_datos",        "label": "Carga y gestión de datos",    "market_hours": 8,  "my_hours": 3, "base_price": 140000 },
+        { "id": "gst_dashboard",    "label": "Dashboard administrativo",    "market_hours": 10, "my_hours": 4, "base_price": 220000 },
+        { "id": "gst_accesos",      "label": "Gestión de accesos y roles",  "market_hours": 8,  "my_hours": 3, "base_price": 140000 }
+      ]
     }
   }
 }
